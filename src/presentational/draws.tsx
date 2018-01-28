@@ -13,11 +13,13 @@ class Draws extends React.Component<Props> {
     render() {
         const drawComponents = this.props.store.draws.map((draw) => {
             // TODO: generate unique 'key' for react? (prevent re-rendering hiccups?)
-            const thumbFileName = draw.name.replace(/\.png$/, '.jpg');
+            const thumbFileName = draw.name.replace(/\.(png|gif)$/, '.jpg');
             const thumbImgSrc = this.props.store.drawsURL + '/thumbnails/' + thumbFileName;
             return (
                 <div key="owowhatsthis">
-                    <img src={thumbImgSrc} alt={draw.name} />
+                    <a href={this.props.store.drawsURL + '/' + draw.name}>
+                        <img src={thumbImgSrc} alt={draw.name} />
+                    </a>
                 </div>
             );
         });

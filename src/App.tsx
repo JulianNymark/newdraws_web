@@ -27,7 +27,7 @@ class App extends React.Component<Props, State> {
         queryParams: {
           page: 0,
           resultsPerPage: 10,
-          filter: 'pet',
+          filter: '',
         },
         draws: []
       }
