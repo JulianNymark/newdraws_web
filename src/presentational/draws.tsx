@@ -12,10 +12,12 @@ class Draws extends React.Component<Props> {
 
     render() {
         const drawComponents = this.props.store.draws.map((draw) => {
-            // TODO: what is key for in array html elements???
+            // TODO: generate unique 'key' for react? (prevent re-rendering hiccups?)
+            const thumbFileName = draw.name.replace(/\.png$/, '.jpg');
+            const thumbImgSrc = this.props.store.drawsURL + '/thumbnails/' + thumbFileName;
             return (
                 <div key="owowhatsthis">
-                    <img src={this.props.store.drawsURL + '/thumbnails/' + draw.name} alt={draw.name} />
+                    <img src={thumbImgSrc} alt={draw.name} />
                 </div>
             );
         });
