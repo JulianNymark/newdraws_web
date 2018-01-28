@@ -15,7 +15,7 @@ class Draws extends React.Component<Props> {
             // TODO: what is key for in array html elements???
             return (
                 <div key="owowhatsthis">
-                    <img src={this.props.store.drawsURL + '/' + draw.name} alt={draw.name} />
+                    <img src={this.props.store.drawsURL + '/thumbnails/' + draw.name} alt={draw.name} />
                 </div>
             );
         });
