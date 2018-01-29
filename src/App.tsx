@@ -13,8 +13,8 @@ interface State {
   store: Store;
 }
 
-const API_HOST: string = process.env.REACT_APP_API_HOST || 'http://localhost:8000';
-const IMAGE_HOST: string = process.env.REACT_APP_IMAGE_HOST || 'http://localhost';
+const API_HOST: string = process.env.REACT_APP_API_HOST || '';
+const IMAGE_HOST: string = process.env.REACT_APP_IMAGE_HOST || '';
 
 class App extends React.Component<Props, State> {
   constructor(props: Props) {
