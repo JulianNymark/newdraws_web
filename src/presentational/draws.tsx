@@ -16,7 +16,7 @@ class Draws extends React.Component<Props> {
             const thumbFileName = draw.name.replace(/\.(png|gif)$/, '.jpg');
             const thumbImgSrc = this.props.store.drawsURL + '/thumbnails/' + thumbFileName;
             return (
-                <div key="owowhatsthis">
+                <div key="owowhatsthis" className="draw">
                     <a href={this.props.store.drawsURL + '/' + draw.name}>
                         <img src={thumbImgSrc} alt={draw.name} />
                     </a>

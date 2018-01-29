@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import * as Utils from './utils';
 import './App.css';
-import { Test } from './presentational/test';
 import { Draws } from './presentational/draws';
 import { Store } from './types';
 
@@ -33,6 +32,8 @@ class App extends React.Component<Props, State> {
       }
     };
     this.updateFilter = this.updateFilter.bind(this);
+    this.updatePage = this.updatePage.bind(this);
+    this.updateResultsPerPage = this.updateResultsPerPage.bind(this);
   }
 
   updateFilter() {
@@ -42,6 +43,35 @@ class App extends React.Component<Props, State> {
       (prevState, props) => {
         const newState = { ...prevState };
         newState.store.queryParams.filter = inputElement.value;
+        newState.store.queryParams.page = 0;
+        return newState;
+      },
+      () => {
+        this.fetchDraws();
+      });
+  }
+
+  updatePage() {
+    let inputElement: HTMLInputElement = document.getElementById('input-page') as HTMLInputElement;
+
+    this.setState(
+      (prevState, props) => {
+        const newState = { ...prevState };
+        newState.store.queryParams.page = parseInt(inputElement.value, 10);
+        return newState;
+      },
+      () => {
+        this.fetchDraws();
+      });
+  }
+
+  updateResultsPerPage() {
+    let inputElement: HTMLInputElement = document.getElementById('input-results-per-page') as HTMLInputElement;
+
+    this.setState(
+      (prevState, props) => {
+        const newState = { ...prevState };
+        newState.store.queryParams.resultsPerPage = parseInt(inputElement.value, 10);
         return newState;
       },
       () => {
@@ -73,20 +103,33 @@ class App extends React.Component<Props, State> {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Welcome to Draws</h1>
         </header>
         <input
           id="input-filter"
-          type="text"
-          placeholder="filter search here"
+          type="search"
+          placeholder="Filter"
           onChange={this.updateFilter}
           autoFocus={true}
         />
-        <Test name={'test'} enthusiasmLevel={12} />
+        <label htmlFor="input-page">page: </label>
+        <input
+          id="input-page"
+          type="number"
+          onChange={this.updatePage}
+          value={this.state.store.queryParams.page}
+        />
+        <label htmlFor="input-results-per-page">results per page: </label>
+        <input
+          id="input-results-per-page"
+          type="number"
+          onChange={this.updateResultsPerPage}
+          value={this.state.store.queryParams.resultsPerPage}
+        />
         <Draws store={this.state.store} />
-        <p className="App-intro">
+        <label className="App-intro">
           To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
+        </label>
       </div>
     );
   }
