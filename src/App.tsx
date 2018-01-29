@@ -1,12 +1,9 @@
 import * as React from 'react';
-import * as ServiceWorker from './registerServiceWorker';
 
 import * as Utils from './utils';
 import './App.css';
 import { Draws } from './presentational/draws';
 import { Store } from './types';
-
-ServiceWorker.unregister();
 
 const logo = require('./logo.svg');
 
